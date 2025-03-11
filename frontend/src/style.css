@@ -1,0 +1,48 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Beverage';
+  src: url('/assets/fonts/LTHumor-Regular.ttf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ma police par défaut */
+body {
+  font-family: 'Beverage', sans-serif;
+}
+
+/* mon animation pour la background */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 150% 150%;
+  animation: gradientAnimation 10s ease infinite;
+}
+
+/* mon animation pour faire entrer les div */
+@keyframes slide-in {
+	from {
+		transform: translateX(0);
+		opacity: 0;
+	}
+	to {
+		transform: translateX(100%);
+		opacity: 1;
+	}
+}
+
+.animate-slide-in {
+	animation: slide-in 0.7s ease-out forwards;
+}
+

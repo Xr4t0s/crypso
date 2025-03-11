@@ -1,0 +1,44 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@kolirt/vue-web3-auth": "^2.3.4",
+    "@primevue": "link:@primevue",
+    "@tailwindcss/vite": "^4.0.12",
+    "@wagmi/core": "^2.16.5",
+    "aos": "^2.3.4",
+    "pinia": "^3.0.1",
+    "react": "18",
+    "react-dom": "18",
+    "tailwindcss": "^4.0.12",
+    "viem": "^2.23.9",
+    "vue": "^3.5.13",
+    "vue-connect-wallet": "^0.1.7",
+    "vue-router": "^4.5.0",
+    "web3": "^4.16.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/tsconfig": "^0.7.0",
+    "typescript": "~5.7.2",
+    "vite": "^6.2.0",
+    "vue-tsc": "^2.2.4"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "bufferutil",
+      "esbuild",
+      "keccak",
+      "secp256k1",
+      "utf-8-validate",
+      "vue-demi"
+    ]
+  }
+}
