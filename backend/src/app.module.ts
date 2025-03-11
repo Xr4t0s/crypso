@@ -11,7 +11,7 @@ import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
 	ConfigModule.forRoot({ isGlobal: true }),
-	MongooseModule.forRoot("mongodb+srv://Kr4t0s4s:8aEL7Plb3SGFV5nn@cluster0.hjapm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"),
+	MongooseModule.forRoot(process.env.MONGO_URI || "mongodb+srv://Kr4t0s4s:YlH0MxHKiBakkeSe@cluster0.hjapm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"),
     UsersModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
