@@ -1,21 +1,9 @@
 import { AuthService } from './auth.service';
 import { UsersService } from '../users/users.service';
-import { Response } from 'express';
 export declare class AuthController {
     private readonly authService;
     private readonly usersService;
     constructor(authService: AuthService, usersService: UsersService);
-    signup(body: {
-        username: string;
-        email: string;
-        password: string;
-    }): Promise<import("../users/schemas/user.schema").User>;
-    login(body: {
-        email: string;
-        password: string;
-    }): Promise<{
-        access_token: string;
-    }>;
     walletLogin(body: {
         address: string;
     }): Promise<{
@@ -40,8 +28,4 @@ export declare class AuthController {
         valid: boolean;
         user: any;
     }>;
-    googleAuth(): Promise<{
-        message: string;
-    }>;
-    googleRedirect(req: any, res: Response): Promise<void>;
 }

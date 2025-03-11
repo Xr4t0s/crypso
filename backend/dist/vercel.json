@@ -1,9 +1,0 @@
-{
-  "version": 2,
-  "routes": [
-    {
-      "dest": "main.js",
-      "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"]
-    }
-  ]
-}

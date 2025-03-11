@@ -12,16 +12,6 @@ export class AuthController {
     private readonly usersService: UsersService
   ) {}
 
-  @Post('signup')  
-  async signup(@Body() body: { username: string, email: string; password: string }) {
-    return this.usersService.createUserByEmail(body.username, body.email, body.password);
-  }
-
-  @Post('login')
-  async login(@Body() body: { email: string; password: string }) {
-    return this.authService.login(body.email, body.password);
-  }
-
 	@Post('walletLogin')
 	async walletLogin(@Body() body: { address: string }) {
 		return this.authService.walletLogin(body.address);
@@ -53,25 +43,5 @@ export class AuthController {
   @Get('validate-token')
   async validateToken(@Req() req) {
     return { valid: true, user: req.user };
-  }
-
-  // 🔹 Étape 1 : Endpoint pour initier la connexion Google
-  @Get('google')
-  @UseGuards(AuthGuard('google'))
-  async googleAuth() {
-    return { message: 'Redirecting to Google...' };
-  }
-
-  // 🔹 Étape 2 : Endpoint appelé après la connexion Google
-  @Get('google/redirect')
-  @UseGuards(AuthGuard('google'))
-  async googleRedirect(@Req() req, @Res() res: Response) {
-    const user = req.user;
-
-    // Génération d'un JWT pour l'utilisateur
-    const token = this.authService.generateJwt(user);
-
-    // 🔹 Étape 3 : Redirection vers le frontend avec le token
-    return res.redirect(`http://localhost:5173/dashboard?token=${token}`);
   }
 }

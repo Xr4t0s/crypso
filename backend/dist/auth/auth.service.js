@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
 const jwt_1 = require("@nestjs/jwt");
-const bcrypt = require("bcrypt");
 const users_service_1 = require("../users/users.service");
 let AuthService = class AuthService {
     usersService;
@@ -21,24 +20,12 @@ let AuthService = class AuthService {
         this.usersService = usersService;
         this.jwtService = jwtService;
     }
-    async validateUser(email, password) {
-        const user = await this.usersService.findByEmail(email);
-        if (user && (await bcrypt.compare(password, user.password))) {
-            return { email: user.email };
-        }
-        throw new common_1.UnauthorizedException('Invalid credentials');
-    }
     async validateWallet(address) {
         if (!address)
             return;
         const user = await this.usersService.findByWallet(address);
         if (user)
             return { address: user.address };
-    }
-    async login(email, password) {
-        const user = await this.validateUser(email, password);
-        const payload = { email: user.email };
-        return { access_token: this.jwtService.sign(payload) };
     }
     async walletLogin(address) {
         const user = await this.validateWallet(address);

@@ -11,7 +11,7 @@ const formattedAddress = computed(() => {
 
 // État pour stocker la réponse du backend
 const apiResponse = ref(null);
-const mark = ref(null);
+const mark = ref(false);
 
 const loginWallet = async () => {
 	if (!account.address) {
@@ -20,7 +20,7 @@ const loginWallet = async () => {
   }
 
   try {
-    const response = await fetch("https://dapp-crypso-heroku-01adf7990845.herokuapp.com/auth/walletLogin", {
+    const response = await fetch("https://crypso-19f91d81c0fa.herokuapp.com/auth/walletLogin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -32,8 +32,8 @@ const loginWallet = async () => {
     apiResponse.value = data;
     console.log("Réponse API :", data);
 		localStorage.setItem('token', data.access_token)
-		mark = !mark
-		window.location.assign('/profile')
+		mark.value = !mark.value
+		window.location.hre = '/earn'
   } catch (error) {
     console.error("Erreur API :", error);
   }
@@ -47,7 +47,7 @@ const identicateWallet = async () => {
   }
 
   try {
-    const response = await fetch("https://dapp-crypso-heroku-01adf7990845.herokuapp.com/auth/wallet", {
+    const response = await fetch("https://crypso-19f91d81c0fa.herokuapp.com/auth/wallet", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

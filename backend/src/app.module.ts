@@ -5,14 +5,13 @@ import { UsersModule } from './users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './auth/jwt.strategy';
-import { GoogleStrategy } from './auth/google.strategy';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
 	ConfigModule.forRoot({ isGlobal: true }),
-	MongooseModule.forRoot("mongodb+srv://Kr4t0s4s:pW8xl4med1zklwOj@cluster0.hjapm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"),
+	MongooseModule.forRoot("mongodb+srv://Kr4t0s4s:8aEL7Plb3SGFV5nn@cluster0.hjapm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"),
     UsersModule,
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
@@ -21,7 +20,7 @@ import { ConfigModule } from '@nestjs/config';
     }),
   ],
   controllers: [AuthController], // ✅ Doit inclure le contrôleur d'authentification
-  providers: [AuthService, JwtStrategy, GoogleStrategy], // ✅ Doit inclure le service d'authentification
+  providers: [AuthService, JwtStrategy], // ✅ Doit inclure le service d'authentification
   exports: [AuthService], // ✅ Nécessaire pour que d'autres modules puissent utiliser AuthService
 })
 export class AuthModule {}

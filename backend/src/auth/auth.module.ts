@@ -5,21 +5,19 @@ import { PassportModule } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { UsersModule } from '../users/users.module';
 import { JwtStrategy } from './jwt.strategy';
-import { GoogleStrategy } from './google.strategy';
 import { AuthController } from './auth.controller';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }), // ✅ Rend ConfigService accessible globalement
     UsersModule,
-    PassportModule.register({ defaultStrategy: 'google' }),
     JwtModule.register({
       secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: '1h' },
+      signOptions: { expiresIn: '3h' },
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy, GoogleStrategy], // ✅ Ajoute GoogleStrategy
+  providers: [AuthService, JwtStrategy], // ✅ Ajoute GoogleStrategy
   exports: [AuthService],
 })
 export class AuthModule {}

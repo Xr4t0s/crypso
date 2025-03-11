@@ -9,25 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WalletSchema = exports.UserSchema = exports.Wallet = exports.User = void 0;
+exports.WalletSchema = exports.Wallet = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-let User = class User extends mongoose_2.Document {
-    email;
-    password;
-};
-exports.User = User;
-__decorate([
-    (0, mongoose_1.Prop)({ required: true, unique: true }),
-    __metadata("design:type", String)
-], User.prototype, "email", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ required: true }),
-    __metadata("design:type", String)
-], User.prototype, "password", void 0);
-exports.User = User = __decorate([
-    (0, mongoose_1.Schema)()
-], User);
 let Wallet = class Wallet extends mongoose_2.Document {
     address;
 };
@@ -39,6 +23,5 @@ __decorate([
 exports.Wallet = Wallet = __decorate([
     (0, mongoose_1.Schema)()
 ], Wallet);
-exports.UserSchema = mongoose_1.SchemaFactory.createForClass(User);
 exports.WalletSchema = mongoose_1.SchemaFactory.createForClass(Wallet);
 //# sourceMappingURL=user.schema.js.map

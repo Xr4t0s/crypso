@@ -10,11 +10,7 @@ const menuRef = ref<HTMLElement | null>(null); // Référence pour le menu
 const Items = [
   { name: "Home", link: "/" },
   { name: "Earn", link: "/earn" },
-  { name: "Documentation", link: "/docs" },
   { name: "Profile", link: "/profile" },
-  { name: "Settings", link: "/settings" },
-  { name: "About", link: "/about" },
-  { name: "Login", link: "/login" },
   { name: "Connect" },
 ];
 

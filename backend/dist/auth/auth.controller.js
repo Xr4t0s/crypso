@@ -16,7 +16,6 @@ exports.AuthController = void 0;
 const common_1 = require("@nestjs/common");
 const auth_service_1 = require("./auth.service");
 const users_service_1 = require("../users/users.service");
-const passport_1 = require("@nestjs/passport");
 const jwt_auth_guard_1 = require("./jwt-auth.guard");
 let AuthController = class AuthController {
     authService;
@@ -24,12 +23,6 @@ let AuthController = class AuthController {
     constructor(authService, usersService) {
         this.authService = authService;
         this.usersService = usersService;
-    }
-    async signup(body) {
-        return this.usersService.createUserByEmail(body.username, body.email, body.password);
-    }
-    async login(body) {
-        return this.authService.login(body.email, body.password);
     }
     async walletLogin(body) {
         return this.authService.walletLogin(body.address);
@@ -50,30 +43,8 @@ let AuthController = class AuthController {
     async validateToken(req) {
         return { valid: true, user: req.user };
     }
-    async googleAuth() {
-        return { message: 'Redirecting to Google...' };
-    }
-    async googleRedirect(req, res) {
-        const user = req.user;
-        const token = this.authService.generateJwt(user);
-        return res.redirect(`http://localhost:5173/dashboard?token=${token}`);
-    }
 };
 exports.AuthController = AuthController;
-__decorate([
-    (0, common_1.Post)('signup'),
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], AuthController.prototype, "signup", null);
-__decorate([
-    (0, common_1.Post)('login'),
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], AuthController.prototype, "login", null);
 __decorate([
     (0, common_1.Post)('walletLogin'),
     __param(0, (0, common_1.Body)()),
@@ -96,22 +67,6 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "validateToken", null);
-__decorate([
-    (0, common_1.Get)('google'),
-    (0, common_1.UseGuards)((0, passport_1.AuthGuard)('google')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], AuthController.prototype, "googleAuth", null);
-__decorate([
-    (0, common_1.Get)('google/redirect'),
-    (0, common_1.UseGuards)((0, passport_1.AuthGuard)('google')),
-    __param(0, (0, common_1.Req)()),
-    __param(1, (0, common_1.Res)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
-    __metadata("design:returntype", Promise)
-], AuthController.prototype, "googleRedirect", null);
 exports.AuthController = AuthController = __decorate([
     (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService,
